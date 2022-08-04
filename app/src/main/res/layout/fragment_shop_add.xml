@@ -32,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/listAddName"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="36dp"
@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/listAddTag"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="40dp"
@@ -55,10 +55,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.134"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/listAddName" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/add_shp_button"
         android:layout_width="163dp"
         android:layout_height="56dp"
         android:layout_marginStart="32dp"
@@ -68,7 +68,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/cancel_shp_button"
         android:layout_width="168dp"
         android:layout_height="56dp"
         android:layout_marginEnd="36dp"

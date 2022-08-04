@@ -18,7 +18,7 @@ import be.bf.android.shoppinglistapp.dal.entities.ShopList
 abstract class ShopDatabase(): RoomDatabase() {
     companion object {
         private var instance: ShopDatabase? = null
-        fun instance(context: Context): ShopDatabase {
+        fun getDatabase(context: Context): ShopDatabase {
             if (instance == null) {
                 val room = Room
                     .databaseBuilder(context, ShopDatabase::class.java, "shopping_table")
