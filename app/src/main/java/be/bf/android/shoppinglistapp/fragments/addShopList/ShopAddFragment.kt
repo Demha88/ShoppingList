@@ -11,6 +11,7 @@ import be.bf.android.shoppinglistapp.R
 import be.bf.android.shoppinglistapp.dal.ShopDatabase
 import be.bf.android.shoppinglistapp.dal.entities.ShopList
 import be.bf.android.shoppinglistapp.databinding.FragmentShopAddBinding
+import com.google.android.material.snackbar.Snackbar
 
 class ShopAddFragment : Fragment() {
 
@@ -33,6 +34,10 @@ class ShopAddFragment : Fragment() {
             InsertDataShoptoDB()
         }
 
+        binding.cancelShpButton.setOnClickListener {
+            findNavController().navigate(R.id.action_shopAddFragment_to_homeFragment)
+        }
+
         return binding.root
 
     }
@@ -46,11 +51,15 @@ class ShopAddFragment : Fragment() {
             // insertion dans DB
             dBase.ShopListDao().addShopList(shopList)
             Toast.makeText(requireContext(), "Ajouté avec succès!", Toast.LENGTH_LONG).show()
+            //Snackbar.make(binding.root,"Ajouté avec succès!", Snackbar.LENGTH_LONG ).show()
+
+
             // retour vers liste principale
             findNavController().navigate(R.id.action_shopAddFragment_to_shopListFragment)
 
         } else {
-            Toast.makeText(requireContext(), "Entrez les données !", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(requireContext(), "Entrez les données !", Toast.LENGTH_LONG).show()
+            Snackbar.make(binding.root,"Entrez les données !", Snackbar.LENGTH_LONG ).show()
         }
     }
 

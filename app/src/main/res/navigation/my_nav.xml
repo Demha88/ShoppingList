@@ -3,24 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
-    app:startDestination="@id/shopListFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/shopListFragment"
         android:name="be.bf.android.shoppinglistapp.fragments.shopList.ShopListFragment"
-        android:label="fragment_shop_list"
+        android:label="Liste de course"
         tools:layout="@layout/fragment_shop_list" >
         <action
             android:id="@+id/action_shopListFragment_to_shopAddFragment"
             app:destination="@id/shopAddFragment" />
+        <action
+            android:id="@+id/action_shopListFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/shopAddFragment"
         android:name="be.bf.android.shoppinglistapp.fragments.addShopList.ShopAddFragment"
-        android:label="fragment_shop_add"
+        android:label="Détail liste"
         tools:layout="@layout/fragment_shop_add" >
         <action
             android:id="@+id/action_shopAddFragment_to_shopListFragment"
             app:destination="@id/shopListFragment" />
+        <action
+            android:id="@+id/action_shopAddFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="be.bf.android.shoppinglistapp.fragments.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_shopListFragment"
+            app:destination="@id/shopListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_shopAddFragment2"
+            app:destination="@id/shopAddFragment" />
     </fragment>
 </navigation>

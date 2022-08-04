@@ -15,7 +15,7 @@ import be.bf.android.shoppinglistapp.R.layout.*
 import be.bf.android.shoppinglistapp.dal.entities.ShopList
 import be.bf.android.shoppinglistapp.dal.entities.ShopListViewModel
 import be.bf.android.shoppinglistapp.databinding.FragmentShopListBinding
-import kotlinx.android.synthetic.main.fragment_shop_list.view.*
+//import kotlinx.android.synthetic.main.fragment_shop_list.view.*
 
 
 class ShopListFragment : Fragment() {
@@ -61,7 +61,7 @@ class ShopListFragment : Fragment() {
 
     }
 
-    // Mettre les _binding à nul lors de la destructin du fragment pr éviter leaks memory
+    // Mettre les _binding à nul lors de la destruction du fragment pr éviter leaks memory
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
