@@ -1,11 +1,9 @@
 package be.bf.android.shoppinglistapp.dal.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import be.bf.android.shoppinglistapp.dal.entities.ShopList
+import be.bf.android.shoppinglistapp.dal.entities.ShopListWithDetail
 
 
 @Dao
@@ -14,8 +12,10 @@ interface ShopListDao {
 @Insert(onConflict = OnConflictStrategy.REPLACE)
 fun addShopList(shopList: ShopList)
 
+
+@Transaction
 @Query("SELECT * FROM shopping_table")
-fun readAll(): LiveData<List<ShopList>>
+fun readAllShoplistWithDetail(): LiveData<List<ShopListWithDetail>>
 
 
 }

@@ -11,13 +11,15 @@ import kotlinx.coroutines.launch
 
 class ShopListViewModel(application: Application): AndroidViewModel(application) {
 
-    val readAllData: LiveData<List<ShopList>>
+    //val readAllData: LiveData<List<ShopList>>
+    val readAllData: LiveData<List<ShopListWithDetail>>
     private val repository: ShopRepository
 
     init {
         val shopListDao = ShopDatabase.getDatabase(application).ShopListDao()
         repository = ShopRepository(shopListDao)
         readAllData = repository.readAllData
+
     }
 
     fun addShopList(shopList: ShopList){
