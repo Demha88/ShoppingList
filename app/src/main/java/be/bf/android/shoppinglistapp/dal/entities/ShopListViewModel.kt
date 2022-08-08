@@ -27,8 +27,12 @@ class ShopListViewModel(application: Application): AndroidViewModel(application)
             repository.addShopList(shopList)
         }
 
+
+
     }
 
-
+    fun getLastShopId(shopList: ShopList): LiveData<Long> {
+        return repository.getLastShopId(shopList)
+    }
 
 }

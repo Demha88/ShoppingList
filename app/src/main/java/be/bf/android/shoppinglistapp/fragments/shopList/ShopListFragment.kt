@@ -90,4 +90,5 @@ class ShopListFragment : Fragment() {
     }
 
 
+
 }

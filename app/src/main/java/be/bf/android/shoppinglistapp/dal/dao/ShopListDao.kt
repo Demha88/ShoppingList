@@ -17,7 +17,8 @@ fun addShopList(shopList: ShopList)
 @Query("SELECT * FROM shopping_table")
 fun readAllShoplistWithDetail(): LiveData<List<ShopListWithDetail>>
 
-
+@Query("SELECT list_id FROM shopping_table ORDER BY list_id DESC LIMIT 1")
+fun getLastShopId(): LiveData<Long>
 
 
 

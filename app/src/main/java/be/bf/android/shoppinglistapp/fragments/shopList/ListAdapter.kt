@@ -56,7 +56,7 @@ class ListAdapter(): RecyclerView.Adapter<ListAdapter.MyViewHolder>()  {
 //        holder.itemView.tagName.text = currentList.tagName.toString()
 
        // holder.bind(shopList.get(position))
-        holder.bind(shopList.get(position))
+        holder.bind(shopList[position])
 
     }
 

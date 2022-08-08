@@ -16,4 +16,8 @@ class ShopRepository(private val shopListDao: ShopListDao) {
         shopListDao.addShopList(shopList)
     }
 
+    fun getLastShopId(shopList: ShopList): LiveData<Long>{
+        return shopListDao.getLastShopId()
+    }
+
 }
