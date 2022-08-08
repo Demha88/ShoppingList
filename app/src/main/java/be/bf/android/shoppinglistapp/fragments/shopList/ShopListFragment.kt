@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import be.bf.android.shoppinglistapp.R
+import be.bf.android.shoppinglistapp.dal.entities.ShopList
 import be.bf.android.shoppinglistapp.dal.entities.ShopListViewModel
 import be.bf.android.shoppinglistapp.databinding.FragmentShopListBinding
 //import kotlinx.android.synthetic.main.fragment_shop_list.view.*
@@ -43,8 +44,9 @@ class ShopListFragment : Fragment() {
         // Ajout pour onCLick Recycler
         adapter.setOnItemClickListener(object : ListAdapter.onItemClicklistener{
             override fun onItemClick(position: Int) {
-                //Toast.makeText(requireContext(), "You clicked on item no. $position", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "You clicked on item no. $position", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_shopListFragment_to_detailFragment)
+
             }
 
 

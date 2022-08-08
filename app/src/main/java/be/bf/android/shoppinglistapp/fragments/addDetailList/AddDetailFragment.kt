@@ -8,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import be.bf.android.shoppinglistapp.R
 import be.bf.android.shoppinglistapp.dal.ShopDatabase
 import be.bf.android.shoppinglistapp.dal.dao.DetailListDao
-import be.bf.android.shoppinglistapp.dal.entities.DetailList
-import be.bf.android.shoppinglistapp.dal.entities.ShopList
-import be.bf.android.shoppinglistapp.dal.entities.ShopListWithDetail
+import be.bf.android.shoppinglistapp.dal.dao.ShopListDao
+import be.bf.android.shoppinglistapp.dal.entities.*
 import be.bf.android.shoppinglistapp.databinding.FragmentAddDetailBinding
 import be.bf.android.shoppinglistapp.fragments.shopList.ListAdapter
 import com.google.android.material.snackbar.Snackbar
@@ -25,6 +25,8 @@ class AddDetailFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var dBase : ShopDatabase
+
+    private lateinit var shopListViewModel: ShopListViewModel
 
 
     private val categorie = arrayOf("Divers", "Nourriture","Nourriture Lait", "Hygiène et Santé", "Produit Ménagers", "Mode")
@@ -43,6 +45,14 @@ class AddDetailFragment : Fragment() {
 //
 //        }
 
+        // test retrait id
+        dBase = ShopDatabase.getDatabase(requireContext())
+        val shopList: ShopList
+        val shopListDao: ShopListDao?=null
+        //shopListViewModel = ViewModelProvider(this).get(ShopListViewModel::class.java)
+        //val res = shopListViewModel.getLastShopId(shopList!!)
+        val res = shopListDao?.getLastShopId()
+        binding.testId.text = res.toString()
 
         val spinner = binding.catSpinner
         //spinner.adapter= ArrayAdapter(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, categorie)
@@ -64,6 +74,10 @@ class AddDetailFragment : Fragment() {
                     val detailName = binding.nomDetail.text.toString()
                     val quantite = binding.nbQuantite.text
                     val categorie = reslt.toString()
+                    // id ShopListFrag
+
+
+                    //fin id ShopListFrag
                     if (detailName.isNotEmpty() && quantite.isNotEmpty()) {
 //
                         val detailList = DetailList(

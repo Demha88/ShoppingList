@@ -30,6 +30,7 @@ class DetailAdapter() : RecyclerView.Adapter<DetailAdapter.MyViewHolder>() {
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bindin(detailList[position])
+
     }
 
     override fun getItemCount(): Int {
