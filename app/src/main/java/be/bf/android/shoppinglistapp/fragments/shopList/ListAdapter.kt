@@ -14,8 +14,7 @@ class ListAdapter(): RecyclerView.Adapter<ListAdapter.MyViewHolder>()  {
     private lateinit var mListener: onItemClicklistener
 
     interface onItemClicklistener{
-
-        fun onItemClick(position: Int)
+        fun onItemClick(position: Long)
     }
 
     fun setOnItemClickListener(listener: onItemClicklistener){
@@ -35,11 +34,11 @@ class ListAdapter(): RecyclerView.Adapter<ListAdapter.MyViewHolder>()  {
             binding.tagName.text = get.shopList.tagName
         }
         // Ajout (avec arg  listener: onItemClicklistener) pour onCLick Recycl
-        init {
-             binding.root.setOnClickListener {
-                 listener.onItemClick(adapterPosition)
-             }
-        }
+//        init {
+//             binding.root.setOnClickListener {
+//                 listener.onItemClick(adapterPosition)
+//             }
+//        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -57,7 +56,9 @@ class ListAdapter(): RecyclerView.Adapter<ListAdapter.MyViewHolder>()  {
 
        // holder.bind(shopList.get(position))
         holder.bind(shopList[position])
-
+        holder.itemView.setOnClickListener {
+            mListener.onItemClick(shopList[position].shopList.id)
+        }
     }
 
     override fun getItemCount(): Int {

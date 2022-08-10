@@ -10,8 +10,7 @@ import be.bf.android.shoppinglistapp.dal.entities.ShopListWithDetail
 interface ShopListDao {
 
 @Insert(onConflict = OnConflictStrategy.REPLACE)
-fun addShopList(shopList: ShopList)
-
+suspend fun addShopList(shopList: ShopList)
 
 @Transaction
 @Query("SELECT * FROM shopping_table")

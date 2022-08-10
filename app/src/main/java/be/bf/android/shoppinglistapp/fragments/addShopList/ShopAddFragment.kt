@@ -12,6 +12,9 @@ import be.bf.android.shoppinglistapp.dal.ShopDatabase
 import be.bf.android.shoppinglistapp.dal.entities.ShopList
 import be.bf.android.shoppinglistapp.databinding.FragmentShopAddBinding
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class ShopAddFragment : Fragment() {
 
@@ -49,7 +52,9 @@ class ShopAddFragment : Fragment() {
         if (listAddName.isNotEmpty() && listAddTag.isNotEmpty()){
             val shopList = ShopList(listAddName, listAddTag)
             // insertion dans DB
+            GlobalScope.launch(Dispatchers.IO) {
             dBase.ShopListDao().addShopList(shopList)
+            }
             Toast.makeText(requireContext(), "Ajouté avec succès!", Toast.LENGTH_LONG).show()
             //Snackbar.make(binding.root,"Ajouté avec succès!", Snackbar.LENGTH_LONG ).show()
 

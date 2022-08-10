@@ -3,10 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/STG1740/AndroidStudioProjects/ShoppingList/app/src/main/res/layout/adapter_detail.xml" value="0.25" />
+        <entry key="..\:/Users/STG1740/AndroidStudioProjects/ShoppingList/app/src/main/res/layout/adapter_detail.xml" value="0.5" />
         <entry key="..\:/Users/STG1740/AndroidStudioProjects/ShoppingList/app/src/main/res/layout/adapter_shoplist.xml" value="0.25" />
         <entry key="..\:/Users/STG1740/AndroidStudioProjects/ShoppingList/app/src/main/res/layout/fragment_add_detail.xml" value="0.33" />
         <entry key="..\:/Users/STG1740/AndroidStudioProjects/ShoppingList/app/src/main/res/layout/fragment_detail.xml" value="0.334375" />
+        <entry key="..\:/Users/STG1740/AndroidStudioProjects/ShoppingList/app/src/main/res/layout/fragment_shop_list.xml" value="0.3489583333333333" />
         <entry key="..\:/Users/STG1740/AndroidStudioProjects/ShoppingListApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/STG1740/AndroidStudioProjects/ShoppingListApp/app/src/main/res/layout/adapter_shoplist.xml" value="0.2509057971014493" />
         <entry key="..\:/Users/STG1740/AndroidStudioProjects/ShoppingListApp/app/src/main/res/layout/fragment_home.xml" value="0.33" />
@@ -20,5 +21,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.5" />
+      </ProjectState>
+    </option>
   </component>
 </project>

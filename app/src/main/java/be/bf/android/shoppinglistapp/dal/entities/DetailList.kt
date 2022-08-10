@@ -30,7 +30,7 @@ data class DetailList @Ignore constructor(
     val categorie: String,
     @ColumnInfo(name="quantite")
     val quantite: Int,
-    @ColumnInfo(name="list_id") val shopList_Id: Int,
+    @ColumnInfo(name="list_id") val shopList_Id: Long,
 
 
 //    @PrimaryKey(autoGenerate = true)
@@ -40,9 +40,9 @@ data class DetailList @Ignore constructor(
 ){
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "detailList_id")
-    var id: Int=0
+    var id: Long=0
 
-    constructor(id:Int, detailName: String, categorie: String, quantite: Int, shopList_Id: Int): this(detailName,categorie, quantite, shopList_Id){
+    constructor(id:Long, detailName: String, categorie: String, quantite: Int, shopList_Id: Long): this(detailName,categorie, quantite, shopList_Id){
         this.id=id
     }
 

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -43,9 +44,10 @@ class ShopListFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         // Ajout pour onCLick Recycler
         adapter.setOnItemClickListener(object : ListAdapter.onItemClicklistener{
-            override fun onItemClick(position: Int) {
-                Toast.makeText(requireContext(), "You clicked on item no. $position", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.action_shopListFragment_to_detailFragment)
+            override fun onItemClick(id: Long) {
+
+                val bundle = bundleOf("position" to id)
+                findNavController().navigate(R.id.action_shopListFragment_to_detailFragment, bundle)
 
             }
 

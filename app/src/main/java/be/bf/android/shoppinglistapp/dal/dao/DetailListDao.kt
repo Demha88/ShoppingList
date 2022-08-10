@@ -9,10 +9,13 @@ import be.bf.android.shoppinglistapp.dal.entities.DetailList
 interface DetailListDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addDetailList(detailList: DetailList)
+   suspend fun addDetailList(detailList: DetailList)
 
     @Query("SELECT * FROM detailList_table")
     fun readAllDetailList(): LiveData<List<DetailList>>
+
+    @Query("SELECT * FROM detailList_table WHERE list_id = :list_Id")
+    fun readDetailListById(list_Id :Long): LiveData<List<DetailList>>
 
 
 

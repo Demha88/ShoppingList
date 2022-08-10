@@ -12,7 +12,7 @@ class ShopRepository(private val shopListDao: ShopListDao) {
 //        userDao.addUser(user)
 //    }
 
-    fun addShopList(shopList: ShopList){
+    suspend fun addShopList(shopList: ShopList){
         shopListDao.addShopList(shopList)
     }
 

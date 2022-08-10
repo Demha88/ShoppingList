@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="30sp">
+    android:padding="15sp">
 
     <TextView
         android:id="@+id/detailName"
         android:layout_width="164dp"
         android:layout_height="32dp"
+        android:layout_marginStart="35dp"
         android:hint="TextView"
         android:textAppearance="@color/material_dynamic_neutral0"
         android:textSize="23sp"
@@ -21,11 +22,12 @@
         android:id="@+id/textCategorie"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="12dp"
         android:hint="Catégorie"
         android:textSize="23dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.006"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailName" />
 
@@ -43,11 +45,20 @@
         android:id="@+id/textQtite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
         android:text="textQtite"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkBox3"
+        android:layout_width="31dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="-8dp"
+        android:layout_marginTop="28dp"
+        android:text="CheckBox"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 

@@ -16,8 +16,12 @@ import be.bf.android.shoppinglistapp.dal.dao.DetailListDao
 import be.bf.android.shoppinglistapp.dal.dao.ShopListDao
 import be.bf.android.shoppinglistapp.dal.entities.*
 import be.bf.android.shoppinglistapp.databinding.FragmentAddDetailBinding
+import be.bf.android.shoppinglistapp.fragments.detailList.DetailFragment
 import be.bf.android.shoppinglistapp.fragments.shopList.ListAdapter
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class AddDetailFragment : Fragment() {
 
@@ -27,6 +31,8 @@ class AddDetailFragment : Fragment() {
     private lateinit var dBase : ShopDatabase
 
     private lateinit var shopListViewModel: ShopListViewModel
+
+    private var listId : Int = 0
 
 
     private val categorie = arrayOf("Divers", "Nourriture","Nourriture Lait", "Hygiène et Santé", "Produit Ménagers", "Mode")
@@ -39,6 +45,9 @@ class AddDetailFragment : Fragment() {
         //return inflater.inflate(R.layout.fragment_add_detail, container, false)
 
         _binding = FragmentAddDetailBinding.inflate(inflater, container, false)
+
+        val bund = arguments?.get("position") as Long
+
 
 //        dBase = ShopDatabase.getDatabase(requireContext())
 //        binding.addButton.setOnClickListener {
@@ -74,7 +83,7 @@ class AddDetailFragment : Fragment() {
                     val detailName = binding.nomDetail.text.toString()
                     val quantite = binding.nbQuantite.text
                     val categorie = reslt.toString()
-                    // id ShopListFrag
+//                    // id ShopListFrag
 
 
                     //fin id ShopListFrag
@@ -84,9 +93,12 @@ class AddDetailFragment : Fragment() {
                             detailName,
                             categorie,
                             Integer.parseInt(quantite.toString()),
-                            0
+                            bund
                         )
-                        dBase.DetailListDao().addDetailList(detailList)
+                        GlobalScope.launch(Dispatchers.IO) {
+                            dBase.DetailListDao().addDetailList(detailList)
+                            //dBase.DetailListDao().readDetailListById(bund)
+                        }
                         Toast.makeText(requireContext(), "Ajouté avec succès!", Toast.LENGTH_LONG)
                             .show()
 
@@ -130,5 +142,12 @@ class AddDetailFragment : Fragment() {
 //        }
 //    }
 
+    override fun onResume() {
+        super.onResume()
+        val pos = arguments?.get("position")
+
+        //Toast.makeText(requireContext(), "You clicked on item no. $pos", Toast.LENGTH_SHORT).show()
+
+    }
 
 }
