@@ -18,6 +18,4 @@ interface DetailListDao {
     fun readDetailListById(list_Id :Long): LiveData<List<DetailList>>
 
 
-
-
 }

@@ -13,6 +13,10 @@ class DetailRepository(private val detailListDao: DetailListDao) {
         detailListDao.addDetailList(detailList)
     }
 
+    suspend fun getListDetail(id: Long) : LiveData<List<DetailList>> {
+        return detailListDao.readDetailListById(id)
+    }
+
 
 
 

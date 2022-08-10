@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
@@ -25,7 +26,7 @@ class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding?=null
     private val binding get() =_binding!!
 
-    private lateinit var detailListViewModel: ShopListViewModel
+    private lateinit var detailListViewModel : ShopListViewModel by activityViewModels {  }()
     private lateinit var detailListDao: DetailListDao
 
     private var listId : Long = 0
@@ -61,7 +62,7 @@ class DetailFragment : Fragment() {
 
 
         // DetailListViewModel
-//        detailListViewModel = ViewModelProvider(this).get(ShopListViewModel::class.java)
+        detailListViewModel = ViewModelProvider(this).get(ShopListViewModel::class.java)
 //        detailListViewModel.readAllDetail.observe(viewLifecycleOwner, Observer {
 //            detailList -> adapter.updateDetail(detailList)
 //        })
