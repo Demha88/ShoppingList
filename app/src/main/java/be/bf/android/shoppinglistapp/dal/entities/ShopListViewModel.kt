@@ -65,7 +65,7 @@ class ShopListViewModel(val database : ShopDatabase): ViewModel() {
         }
     }
 
-    fun getDetailList(detailListId : Long) {
+    fun getDetailList(detailListId : Int) {
         viewModelScope.launch {
             Log.d("getDatailLis", "pass")
             repo.getListDetail(detailListId).collect() {

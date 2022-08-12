@@ -19,6 +19,10 @@
         <action
             android:id="@+id/action_shopListFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <argument
+            android:name="position"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/shopAddFragment"
@@ -52,6 +56,10 @@
         <action
             android:id="@+id/action_detailFragment_to_addDetailFragment"
             app:destination="@id/addDetailFragment" />
+        <argument
+            android:name="position"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/addDetailFragment"
@@ -61,8 +69,9 @@
         <action
             android:id="@+id/action_addDetailFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
-        <action
-            android:id="@+id/action_addDetailFragment_to_shopListFragment"
-            app:destination="@id/shopListFragment" />
+        <argument
+            android:name="position"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 </navigation>

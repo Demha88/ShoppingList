@@ -18,7 +18,7 @@ class ShopRepository(private val shopListDao: ShopListDao) {
         shopListDao.addShopList(shopList)
     }
 
-    fun getLastShopId(shopList: ShopList): Flow<Long>{
+    fun getLastShopId(shopList: ShopList): Flow<Int>{
         return shopListDao.getLastShopId()
     }
 

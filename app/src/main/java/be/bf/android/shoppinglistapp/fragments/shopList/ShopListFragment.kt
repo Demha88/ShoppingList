@@ -44,11 +44,12 @@ class ShopListFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         // Ajout pour onCLick Recycler
         adapter.setOnItemClickListener(object : ListAdapter.onItemClicklistener{
-            override fun onItemClick(id: Long) {
+            override fun onItemClick(position: Int) {
 
-                val bundle = bundleOf("position" to id)
-               // val bundle = bundleOf("position" to shopList[id.toInt()-1].shopList.id)
+               // val bundle = bundleOf("position" to id)
+                val bundle = bundleOf("position" to shopList[position.toInt()-1].shopList.id)
                 findNavController().navigate(R.id.action_shopListFragment_to_detailFragment, bundle)
+
 
             }
 

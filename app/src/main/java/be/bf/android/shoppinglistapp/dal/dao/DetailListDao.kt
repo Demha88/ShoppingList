@@ -17,7 +17,7 @@ interface DetailListDao {
     fun readAllDetailList(): Flow<List<DetailList>>
 
     @Query("SELECT * FROM detailList_table WHERE list_id = :list_Id")
-    fun readDetailListById(list_Id :Long): Flow<List<DetailList>>
+    fun readDetailListById(list_Id :Int): Flow<List<DetailList>>
 
 
 }

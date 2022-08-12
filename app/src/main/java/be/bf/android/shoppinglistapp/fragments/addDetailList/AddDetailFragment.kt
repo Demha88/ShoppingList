@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import be.bf.android.shoppinglistapp.R
@@ -46,7 +47,7 @@ class AddDetailFragment : Fragment() {
 
         _binding = FragmentAddDetailBinding.inflate(inflater, container, false)
 
-        val bund = arguments?.get("position") as Long
+        val bund = arguments?.get("position") as Int
 
 
 //        dBase = ShopDatabase.getDatabase(requireContext())
@@ -102,8 +103,8 @@ class AddDetailFragment : Fragment() {
                         Toast.makeText(requireContext(), "Ajouté avec succès!", Toast.LENGTH_LONG)
                             .show()
 
-                        //findNavController().navigate(R.id.action_addDetailFragment_to_detailFragment)
-                        findNavController().navigate(R.id.action_addDetailFragment_to_shopListFragment)
+                        findNavController().navigate(R.id.action_addDetailFragment_to_detailFragment)
+                        //findNavController().navigate(R.id.action_addDetailFragment_to_shopListFragment)
                     } else {
                         //Toast.makeText(requireContext(), "Entrez les données !", Toast.LENGTH_LONG).show()
                         Snackbar.make(binding.root, "Entrez les données !", Snackbar.LENGTH_LONG)

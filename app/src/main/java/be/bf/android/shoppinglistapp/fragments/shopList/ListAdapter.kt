@@ -14,7 +14,7 @@ class ListAdapter(): RecyclerView.Adapter<ListAdapter.MyViewHolder>()  {
     private lateinit var mListener: onItemClicklistener
 
     interface onItemClicklistener{
-        fun onItemClick(position: Long)
+        fun onItemClick(position: Int)
     }
 
     fun setOnItemClickListener(listener: onItemClicklistener){

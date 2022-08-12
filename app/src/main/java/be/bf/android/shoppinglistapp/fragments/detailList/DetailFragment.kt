@@ -31,12 +31,14 @@ class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding?=null
     private val binding get() =_binding!!
 
+
     private val detailListViewModel : ShopListViewModel by activityViewModels { ShopListViewModelFactory(requireContext()) }
 //    private lateinit var detailListViewModel: ShopListViewModel
 
     // private var listId : Long = 0
 
-    var bund : Long = 0
+    var bund : Int = 0
+
 
 
     override fun onCreateView(
@@ -56,8 +58,9 @@ class DetailFragment : Fragment() {
 
 //        var bund :Long?=null
 //        recupId(bund!!)
-        bund = arguments?.get("position") as Long
-        //  bund = requireArguments().get("position") as Long
+
+        bund = arguments?.get("position") as Int
+         // bund = requireArguments().get("position") as Int
         // Recyclerview
         val adapter = DetailAdapter()
         val recyclerView = binding.recyclerview
@@ -75,7 +78,7 @@ class DetailFragment : Fragment() {
             adapter.updateDetail(it)
         })
 
-
+        //detailListViewModel.getDetailList(bund)
 //        detailListViewModel.readAllDetail.observe(viewLifecycleOwner, Observer {
 //            detailList -> adapter.updateDetail(detailList)
 //        })

@@ -19,7 +19,7 @@ suspend fun addShopList(shopList: ShopList)
 fun readAllShoplistWithDetail(): Flow<List<ShopListWithDetail>>
 
 @Query("SELECT list_id FROM shopping_table ORDER BY list_id DESC LIMIT 1")
-fun getLastShopId(): Flow<Long>
+fun getLastShopId(): Flow<Int>
 
 
 

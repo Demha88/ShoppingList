@@ -20,7 +20,7 @@ class DetailRepository(private val detailListDao: DetailListDao) {
         detailListDao.addDetailList(detailList)
     }
 
-    fun getListDetail(id: Long) : Flow<List<DetailList>> {
+    fun getListDetail(id: Int) : Flow<List<DetailList>> {
         return detailListDao.readDetailListById(id)
     }
 

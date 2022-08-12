@@ -17,9 +17,9 @@ data class ShopList @Ignore constructor(
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "list_id")
-    var id: Long=0
+    var id: Int=0
 
-    constructor(id:Long, listName: String, tagName: String): this(listName,tagName){
+    constructor(id:Int, listName: String, tagName: String): this(listName,tagName){
         this.id=id
     }
 }
