@@ -1,6 +1,7 @@
 package be.bf.android.shoppinglistapp.fragments.detailList
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,8 +17,12 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import be.bf.android.shoppinglistapp.R
+import be.bf.android.shoppinglistapp.dal.DetailRepository
+import be.bf.android.shoppinglistapp.dal.ShopDatabase
 import be.bf.android.shoppinglistapp.dal.dao.DetailListDao
 import be.bf.android.shoppinglistapp.dal.entities.ShopListViewModel
+import be.bf.android.shoppinglistapp.dal.entities.ShopListViewModelFactory
+import be.bf.android.shoppinglistapp.dal.entities.ShopListWithDetail
 import be.bf.android.shoppinglistapp.databinding.FragmentDetailBinding
 import be.bf.android.shoppinglistapp.fragments.shopList.ListAdapter
 
@@ -26,11 +31,12 @@ class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding?=null
     private val binding get() =_binding!!
 
-    private lateinit var detailListViewModel : ShopListViewModel by activityViewModels {  }()
-    private lateinit var detailListDao: DetailListDao
+    private val detailListViewModel : ShopListViewModel by activityViewModels { ShopListViewModelFactory(requireContext()) }
+//    private lateinit var detailListViewModel: ShopListViewModel
 
-    private var listId : Long = 0
+    // private var listId : Long = 0
 
+    var bund : Long = 0
 
 
     override fun onCreateView(
@@ -46,11 +52,12 @@ class DetailFragment : Fragment() {
 //            listId = arguments?.get("position") as Long
 //        }
 
-        val bund = arguments?.get("position") as Long
+
+
 //        var bund :Long?=null
 //        recupId(bund!!)
-
-
+        bund = arguments?.get("position") as Long
+        //  bund = requireArguments().get("position") as Long
         // Recyclerview
         val adapter = DetailAdapter()
         val recyclerView = binding.recyclerview
@@ -62,13 +69,20 @@ class DetailFragment : Fragment() {
 
 
         // DetailListViewModel
-        detailListViewModel = ViewModelProvider(this).get(ShopListViewModel::class.java)
+//        detailListViewModel = ViewModelProvider(this).get(ShopListViewModel::class.java)
+        detailListViewModel.readAllDetail.observe(viewLifecycleOwner, Observer {
+            Log.d("data", it.toString())
+            adapter.updateDetail(it)
+        })
+
+
 //        detailListViewModel.readAllDetail.observe(viewLifecycleOwner, Observer {
 //            detailList -> adapter.updateDetail(detailList)
 //        })
-        detailListDao.readDetailListById(bund).observe(viewLifecycleOwner, Observer {
-            detailList -> adapter.updateDetail(detailList)
-        })
+
+//        detailListDao.readDetailListById(bund).observe(viewLifecycleOwner, Observer {
+//            detailList -> adapter.updateDetail(detailList)
+//        })
 
 
         // ajout séparateur entre les listes recyclerview
@@ -99,13 +113,16 @@ class DetailFragment : Fragment() {
     }
 
     // Récupérer l'arg
+//    override fun onResume() {
+//        super.onResume()
+//        val pos = arguments?.get("position")
+//
+//        //Toast.makeText(requireContext(), "You clicked on item no. $pos", Toast.LENGTH_SHORT).show()
+//
+//    }
+
     override fun onResume() {
         super.onResume()
-        val pos = arguments?.get("position")
-
-        //Toast.makeText(requireContext(), "You clicked on item no. $pos", Toast.LENGTH_SHORT).show()
-
+        detailListViewModel.getDetailList(bund)
     }
-
-
 }

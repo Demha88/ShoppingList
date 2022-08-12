@@ -30,7 +30,7 @@ class AddDetailFragment : Fragment() {
 
     private lateinit var dBase : ShopDatabase
 
-    private lateinit var shopListViewModel: ShopListViewModel
+    //private lateinit var shopListViewModel: ShopListViewModel
 
     private var listId : Int = 0
 
@@ -56,7 +56,7 @@ class AddDetailFragment : Fragment() {
 
         // test retrait id
         dBase = ShopDatabase.getDatabase(requireContext())
-        val shopList: ShopList
+        //val shopList: ShopList
         val shopListDao: ShopListDao?=null
         //shopListViewModel = ViewModelProvider(this).get(ShopListViewModel::class.java)
         //val res = shopListViewModel.getLastShopId(shopList!!)
@@ -102,7 +102,8 @@ class AddDetailFragment : Fragment() {
                         Toast.makeText(requireContext(), "Ajouté avec succès!", Toast.LENGTH_LONG)
                             .show()
 
-                        // findNavController().navigate(R.id.action_addDetailFragment_to_detailFragment)
+                        //findNavController().navigate(R.id.action_addDetailFragment_to_detailFragment)
+                        findNavController().navigate(R.id.action_addDetailFragment_to_shopListFragment)
                     } else {
                         //Toast.makeText(requireContext(), "Entrez les données !", Toast.LENGTH_LONG).show()
                         Snackbar.make(binding.root, "Entrez les données !", Snackbar.LENGTH_LONG)
@@ -142,12 +143,12 @@ class AddDetailFragment : Fragment() {
 //        }
 //    }
 
-    override fun onResume() {
-        super.onResume()
-        val pos = arguments?.get("position")
-
-        //Toast.makeText(requireContext(), "You clicked on item no. $pos", Toast.LENGTH_SHORT).show()
-
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        val pos = arguments?.get("position")
+//
+//        //Toast.makeText(requireContext(), "You clicked on item no. $pos", Toast.LENGTH_SHORT).show()
+//
+//    }
 
 }

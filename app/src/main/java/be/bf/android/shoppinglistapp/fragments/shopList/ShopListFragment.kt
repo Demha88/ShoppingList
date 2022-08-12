@@ -5,16 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import be.bf.android.shoppinglistapp.R
-import be.bf.android.shoppinglistapp.dal.entities.ShopList
-import be.bf.android.shoppinglistapp.dal.entities.ShopListViewModel
+import be.bf.android.shoppinglistapp.dal.entities.*
 import be.bf.android.shoppinglistapp.databinding.FragmentShopListBinding
 //import kotlinx.android.synthetic.main.fragment_shop_list.view.*
 
@@ -24,7 +22,9 @@ class ShopListFragment : Fragment() {
     private var _binding: FragmentShopListBinding?=null
     private val binding get() = _binding!!
 
-    private lateinit var shopListViewModel: ShopListViewModel
+    private val shopListViewModel: ShopListViewModel by activityViewModels() { ShopListViewModelFactory(requireContext()) }
+
+    private var shopList : List<ShopListWithDetail> = listOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +47,7 @@ class ShopListFragment : Fragment() {
             override fun onItemClick(id: Long) {
 
                 val bundle = bundleOf("position" to id)
+               // val bundle = bundleOf("position" to shopList[id.toInt()-1].shopList.id)
                 findNavController().navigate(R.id.action_shopListFragment_to_detailFragment, bundle)
 
             }
@@ -56,10 +57,13 @@ class ShopListFragment : Fragment() {
 
 
         //ShopListViewModel
-        shopListViewModel = ViewModelProvider(this).get(ShopListViewModel::class.java)
+//        shopListViewModel = ViewModelProvider(this).get(ShopListViewModel::class.java)
         shopListViewModel.readAllData.observe(viewLifecycleOwner, Observer {
             //shopList -> adapter.updateData(shopList)
-                shopList -> adapter.updateData(shopList)
+            if (it != null) {
+                shopList = it
+                adapter.updateData(it)
+            }
         })
 
 //        view.floatingActionButton.setOnClickListener {

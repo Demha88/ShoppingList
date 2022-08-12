@@ -24,12 +24,15 @@ abstract class ShopDatabase(): RoomDatabase() {
         private var instance: ShopDatabase? = null
         fun getDatabase(context: Context): ShopDatabase {
             if (instance == null) {
-                val room = Room
+               // val room = Room
+                    instance= Room
                     //.databaseBuilder(context, ShopDatabase::class.java, "shopping_table")
                     .databaseBuilder(context, ShopDatabase::class.java, DB_NAME)
-                Log.d("Databases", "instance: $room")
-                room.allowMainThreadQueries()
-                instance = room.build()
+                        .fallbackToDestructiveMigration()
+                        .build()
+//                Log.d("Databases", "instance: $room")
+//                room.allowMainThreadQueries()
+//                instance = room.build()
             }
             return instance!!
         }

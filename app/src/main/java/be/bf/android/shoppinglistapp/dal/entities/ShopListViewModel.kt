@@ -1,57 +1,76 @@
 package be.bf.android.shoppinglistapp.dal.entities
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.util.Log
+import androidx.lifecycle.*
 import be.bf.android.shoppinglistapp.dal.DetailRepository
 import be.bf.android.shoppinglistapp.dal.ShopDatabase
 import be.bf.android.shoppinglistapp.dal.ShopRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class ShopListViewModel(val database : ShopDatabase): ViewModel() {
+//class ShopListViewModel(application: Application): AndroidViewModel(application) {
+
 
     //val readAllData: LiveData<List<ShopList>>
-    val readAllData: LiveData<List<ShopListWithDetail>>
+    private val _readAllData: MutableLiveData<List<ShopListWithDetail>> = MutableLiveData()
+    val readAllData : LiveData<List<ShopListWithDetail>>
+        get() = _readAllData
     private val repository: ShopRepository
 
     // DetailList
-    var readAllDetail: LiveData<List<DetailList>>
-    var repo: DetailRepository
+    private val _readAllDetail: MutableLiveData<List<DetailList>> = MutableLiveData()
+    val readAllDetail : LiveData<List<DetailList>>
+        get() = _readAllDetail
+    lateinit var repo: DetailRepository
+
+    //DetailListById
+
 
     init {
         val shopListDao = database.ShopListDao()
-        repository = ShopRepository(shopListDao)
-        readAllData = repository.readAllData
-
-        //DetailList
         val detailListDao = database.DetailListDao()
+        repository = ShopRepository(shopListDao)
         repo = DetailRepository(detailListDao)
-        readAllDetail = repo.readAllDetail
+        viewModelScope.launch {
+    //        val shopListDao = ShopDatabase.getDatabase(application).ShopListDao()
+            repository.readAllData.collect() {
+                _readAllData.value = it
+            }
+            //DetailList
+    //        val detailListDao = ShopDatabase.getDatabase(application).DetailListDao()
+            repo.readAllDetail.collect() {
+                _readAllDetail.value = it
+            }
+            //readAllDetail = repo.readAllDetailById
+        }
+
     }
 
     fun addShopList(shopList: ShopList){
-        viewModelScope.launch(Dispatchers.IO){
+        viewModelScope.launch {
             repository.addShopList(shopList)
         }
     }
 
-    fun getLastShopId(shopList: ShopList): LiveData<Long> {
-        return repository.getLastShopId(shopList)
-    }
+//    fun getLastShopId(shopList: ShopList): LiveData<Long> {
+//        return repository.getLastShopId(shopList)
+//    }
 
 
     fun addDetailList(detailList: DetailList){
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             repo.addDetailList(detailList)
         }
     }
 
     fun getDetailList(detailListId : Long) {
-        viewModelScope.launch(Dispatchers.IO) {
-            readAllDetail = repo.getListDetail(detailListId)
+        viewModelScope.launch {
+            Log.d("getDatailLis", "pass")
+            repo.getListDetail(detailListId).collect() {
+                _readAllDetail.value = it
+            }
         }
     }
 
