@@ -18,9 +18,15 @@ suspend fun addShopList(shopList: ShopList)
 @Query("SELECT * FROM shopping_table")
 fun readAllShoplistWithDetail(): Flow<List<ShopListWithDetail>>
 
+
 @Query("SELECT list_id FROM shopping_table ORDER BY list_id DESC LIMIT 1")
 fun getLastShopId(): Flow<Int>
 
+//@Query("SELECT * FROM shopping_table WHERE listName LIKE :searchQuery")
+//fun searchShopList(searchQuery: String): Flow<List<ShopListWithDetail>>
 
+
+@Query("SELECT * FROM shopping_table WHERE listName LIKE :searchQuery")
+fun searchShopList(searchQuery: String): Flow<List<ShopListWithDetail>>
 
 }

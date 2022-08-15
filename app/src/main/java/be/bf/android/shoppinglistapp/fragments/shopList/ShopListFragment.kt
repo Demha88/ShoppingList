@@ -1,10 +1,9 @@
 package be.bf.android.shoppinglistapp.fragments.shopList
 
 import android.os.Bundle
+import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -13,12 +12,15 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import be.bf.android.shoppinglistapp.R
 import be.bf.android.shoppinglistapp.dal.entities.*
+import be.bf.android.shoppinglistapp.databinding.AdapterDetailBinding
 import be.bf.android.shoppinglistapp.databinding.AdapterShoplistBinding
 import be.bf.android.shoppinglistapp.databinding.FragmentShopListBinding
+import be.bf.android.shoppinglistapp.fragments.detailList.DetailAdapter
+
 //import kotlinx.android.synthetic.main.fragment_shop_list.view.*
 
 
-class ShopListFragment : Fragment() {
+class ShopListFragment : Fragment()/*, SearchView.OnQueryTextListener*/ {
 
     private var _binding: FragmentShopListBinding?=null
     private val binding get() = _binding!!
@@ -27,6 +29,7 @@ class ShopListFragment : Fragment() {
 
 
     private val shopListViewModel: ShopListViewModel by activityViewModels() { ShopListViewModelFactory(requireContext()) }
+    //private val myListAdapter: ListAdapter by lazy { ListAdapter() }
 
     private var shopList : List<ShopListWithDetail> = listOf()
 
@@ -39,6 +42,7 @@ class ShopListFragment : Fragment() {
 
         //Remplacer les extensions par view binding
         _binding = FragmentShopListBinding.inflate(inflater, container, false)
+        setHasOptionsMenu(true);
 
 
         //Recyclerview
@@ -46,6 +50,7 @@ class ShopListFragment : Fragment() {
         val recyclerView = binding.recyclerview
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        //binding.recyclerview.adapter = myListAdapter
         // Ajout pour onCLick Recycler
         adapter.setOnItemClickListener(object : ListAdapter.onItemClicklistener{
             override fun onItemClick(position: Int) {
@@ -56,15 +61,13 @@ class ShopListFragment : Fragment() {
                     "position" to shopList[position.toInt()-1].shopList.id,
                     "titre_liste" to shopList[position.toInt()-1].shopList.listName,
                     "tag_liste" to shopList[position.toInt()-1].shopList.tagName,
-                    "nbre_elemt" to shopList[position.toInt()-1].detailList.size
+                    "nbre_elemt" to shopList[position.toInt()-1].detailList.size,
+
                 )
                 findNavController().navigate(R.id.action_shopListFragment_to_detailFragment, bundle)
-
-
             }
-
-
         })
+
 
 
         //ShopListViewModel
@@ -74,8 +77,11 @@ class ShopListFragment : Fragment() {
             if (it != null) {
                 shopList = it
                 adapter.updateData(it)
+                //myListAdapter.updateData(it)
             }
         })
+
+
 
 //        view.floatingActionButton.setOnClickListener {
 //            findNavController().navigate(R.id.action_shopListFragment_to_shopAddFragment)
@@ -110,7 +116,38 @@ class ShopListFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
-
-
+// rechercheListe
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//         inflater.inflate(R.menu.shoplist_menu, menu)
+//        val search = menu.findItem(R.id.menu_search)
+//        val searchView = search?.actionView as? SearchView
+//        searchView?.isSubmitButtonEnabled = true
+//        searchView?.setOnQueryTextListener(this)
+////        inflater.inflate(R.menu.menu_font_share, menu)
+////        super.onCreateOptionsMenu(menu,inflater)
+//    }
+//
+//    override fun onQueryTextSubmit(query: String?): Boolean {
+//        if(query != null){
+//            searchShopDataBase(query)
+//        }
+//        return true
+//    }
+//
+//    override fun onQueryTextChange(query: String?): Boolean {
+//        if(query != null){
+//            searchShopDataBase(query)
+//        }
+//        return true
+//    }
+//
+//    private fun searchShopDataBase(query: String){
+//        val searchQuery = "%$query%"
+//        shopListViewModel.searchShopList(searchQuery).observe(this) { list ->
+//            list.let {
+//                myListAdapter.updateData(it)
+//            }
+//        }
+//    }
 
 }

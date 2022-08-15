@@ -5,8 +5,6 @@ import androidx.lifecycle.*
 import be.bf.android.shoppinglistapp.dal.DetailRepository
 import be.bf.android.shoppinglistapp.dal.ShopDatabase
 import be.bf.android.shoppinglistapp.dal.ShopRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class ShopListViewModel(val database : ShopDatabase): ViewModel() {
@@ -33,6 +31,7 @@ class ShopListViewModel(val database : ShopDatabase): ViewModel() {
         val detailListDao = database.DetailListDao()
         repository = ShopRepository(shopListDao)
         repo = DetailRepository(detailListDao)
+
         viewModelScope.launch {
     //        val shopListDao = ShopDatabase.getDatabase(application).ShopListDao()
             repository.readAllData.collect() {
@@ -43,7 +42,6 @@ class ShopListViewModel(val database : ShopDatabase): ViewModel() {
             repo.readAllDetail.collect() {
                 _readAllDetail.value = it
             }
-            //readAllDetail = repo.readAllDetailById
         }
 
     }
@@ -72,6 +70,22 @@ class ShopListViewModel(val database : ShopDatabase): ViewModel() {
                 _readAllDetail.value = it
             }
         }
+    }
+
+    fun updateDetailList(detailList: DetailList){
+        viewModelScope.launch {
+            repo.updateDetailList(detailList)
+        }
+    }
+
+    fun deleteDetailList(detailList: DetailList){
+        viewModelScope.launch {
+            repo.deleteDetailList(detailList)
+        }
+    }
+
+    fun searchShopList(searchQuery: String): LiveData<List<ShopListWithDetail>> {
+        return repository.searchShopList(searchQuery).asLiveData()
     }
 
 }

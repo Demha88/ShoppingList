@@ -38,7 +38,7 @@ class AddDetailFragment : Fragment() {
     private val detailListViewModel : ShopListViewModel by activityViewModels { ShopListViewModelFactory(requireContext()) }
 
 
-    private val categorie = arrayOf("Divers", "Nourriture","Nourriture Lait", "Hygiène et Santé", "Produit Ménagers", "Mode")
+    private val categorie = arrayOf("Divers", "Nourriture","Fruits et légumes", "Hygiène et Santé", "Produit Ménagers", "Mode")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,7 +64,7 @@ class AddDetailFragment : Fragment() {
         //shopListViewModel = ViewModelProvider(this).get(ShopListViewModel::class.java)
         //val res = shopListViewModel.getLastShopId(shopList!!)
         val res = shopListDao?.getLastShopId()
-        binding.testId.text = res.toString()
+        //binding.testId.text = res.toString()
 
         val spinner = binding.catSpinner
         //spinner.adapter= ArrayAdapter(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, categorie)
@@ -97,6 +97,7 @@ class AddDetailFragment : Fragment() {
                             detailName,
                             categorie,
                             Integer.parseInt(quantite.toString()),
+                            false,
                             id
                         )
                         Toast.makeText(requireContext(), id.toString(), Toast.LENGTH_SHORT).show()

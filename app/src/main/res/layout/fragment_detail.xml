@@ -80,6 +80,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--
     <TextView
         android:id="@+id/elmt1"
         android:layout_width="18dp"
@@ -115,17 +116,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView8" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="Modifier"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.829"
-        app:layout_constraintStart_toEndOf="@+id/tag_detail"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Switch
         android:id="@+id/switch1"
         android:layout_width="wrap_content"
@@ -134,8 +124,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.872"
         app:layout_constraintStart_toEndOf="@+id/elmt2"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck"
+        tools:layout_editor_absoluteY="104dp" />
 
     <TextView
         android:id="@+id/textView11"
@@ -147,4 +137,6 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/left_divider"
         app:layout_constraintStart_toEndOf="@+id/elmt2" />
+
+        -->
 </androidx.constraintlayout.widget.ConstraintLayout>

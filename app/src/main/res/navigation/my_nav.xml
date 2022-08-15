@@ -52,6 +52,12 @@
         <action
             android:id="@+id/action_detailFragment_to_addDetailFragment"
             app:destination="@id/addDetailFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_updateDetailFragment"
+            app:destination="@id/updateDetailFragment" />
+        <argument
+            android:name="currentShopList"
+            app:argType="be.bf.android.shoppinglistapp.dal.entities.ShopList" />
     </fragment>
     <fragment
         android:id="@+id/addDetailFragment"
@@ -63,6 +69,21 @@
             app:destination="@id/detailFragment" />
         <action
             android:id="@+id/action_addDetailFragment_to_shopListFragment"
+            app:destination="@id/shopListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateDetailFragment"
+        android:name="be.bf.android.shoppinglistapp.fragments.UpdateDetailList.UpdateDetailFragment"
+        android:label="fragment_update_detail"
+        tools:layout="@layout/fragment_update_detail" >
+        <action
+            android:id="@+id/action_updateDetailFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <argument
+            android:name="currentDetailList"
+            app:argType="be.bf.android.shoppinglistapp.dal.entities.DetailList" />
+        <action
+            android:id="@+id/action_updateDetailFragment_to_shopListFragment"
             app:destination="@id/shopListFragment" />
     </fragment>
 </navigation>

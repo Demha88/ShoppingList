@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fragments.addDetailList.AddDetailFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.UpdateDetailList.UpdateDetailFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -36,7 +36,7 @@
             android:layout_weight="0" />
 -->
         <Spinner
-            android:id="@+id/cat_spinner"
+            android:id="@+id/cat_spinnerUpdate"
             android:layout_width="100dp"
             android:layout_height="48dp"
             android:layout_marginRight="25dp"
@@ -45,7 +45,7 @@
 
 
     <EditText
-        android:id="@+id/nomDetail"
+        android:id="@+id/nomDetailUpdate"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="136dp"
@@ -59,7 +59,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/nbQuantite"
+        android:id="@+id/nbQuantiteUpdate"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginTop="36dp"
@@ -70,7 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.194"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nomDetail" />
+        app:layout_constraintTop_toBottomOf="@+id/nomDetailUpdate" />
 
 
     <!--
@@ -88,11 +88,11 @@
         -->
 
     <Button
-        android:id="@+id/add_button"
+        android:id="@+id/update_button"
         android:layout_width="126dp"
         android:layout_height="68dp"
         android:layout_marginBottom="188dp"
-        android:text="Créer"
+        android:text="Modifier"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.192"
@@ -108,7 +108,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/add_button" />
+        app:layout_constraintStart_toEndOf="@+id/update_button" />
 
     <!--
         <TextView
@@ -135,4 +135,5 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nbQuantite" />
                 -->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

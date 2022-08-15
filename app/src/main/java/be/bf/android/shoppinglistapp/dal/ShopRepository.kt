@@ -22,4 +22,8 @@ class ShopRepository(private val shopListDao: ShopListDao) {
         return shopListDao.getLastShopId()
     }
 
+    fun searchShopList(searchQuery: String): Flow<List<ShopListWithDetail>> {
+        return shopListDao.searchShopList(searchQuery)
+    }
+
 }

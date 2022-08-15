@@ -13,11 +13,17 @@ interface DetailListDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
    suspend fun addDetailList(detailList: DetailList)
 
+   @Update
+   suspend fun updateDetailList(detailList: DetailList)
+
     @Query("SELECT * FROM detailList_table")
     fun readAllDetailList(): Flow<List<DetailList>>
 
     @Query("SELECT * FROM detailList_table WHERE list_id = :list_Id")
     fun readDetailListById(list_Id :Int): Flow<List<DetailList>>
+
+@Delete
+suspend fun deleteDetailList(detailList: DetailList)
 
 
 }

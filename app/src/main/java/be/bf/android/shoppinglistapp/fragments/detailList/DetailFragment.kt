@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,13 +21,14 @@ import be.bf.android.shoppinglistapp.R
 import be.bf.android.shoppinglistapp.dal.DetailRepository
 import be.bf.android.shoppinglistapp.dal.ShopDatabase
 import be.bf.android.shoppinglistapp.dal.dao.DetailListDao
+import be.bf.android.shoppinglistapp.dal.entities.DetailList
 import be.bf.android.shoppinglistapp.dal.entities.ShopListViewModel
 import be.bf.android.shoppinglistapp.dal.entities.ShopListViewModelFactory
 import be.bf.android.shoppinglistapp.dal.entities.ShopListWithDetail
 import be.bf.android.shoppinglistapp.databinding.FragmentDetailBinding
 import be.bf.android.shoppinglistapp.fragments.shopList.ListAdapter
 
-class DetailFragment : Fragment() {
+class DetailFragment : Fragment(), DetailAdapter.OnDeleteClickListener {
 
     private var _binding: FragmentDetailBinding?=null
     private val binding get() =_binding!!
@@ -37,7 +39,7 @@ class DetailFragment : Fragment() {
 
     // private var listId : Long = 0
 
-    var bund : Int = 0
+  //  var bund : Int = 0
 
 
 
@@ -54,21 +56,26 @@ class DetailFragment : Fragment() {
 //            listId = arguments?.get("position") as Long
 //        }
 
-         binding.detailTitle.text = arguments?.get("titre_liste") as String
-         binding.tagDetail.text = arguments?.get("tag_liste") as String
-         binding.elmt2.text = arguments?.get("nbre_elemt").toString()
-//        var bund :Long?=null
+//         binding.detailTitle.text = arguments?.get("titre_liste") as String
+//         binding.tagDetail.text = arguments?.get("tag_liste") as String
+//         binding.elmt2.text = arguments?.get("nbre_elemt").toString()
+
+
+        //binding.elmt2.text =
+
+        var bund :Int?=null
 //        recupId(bund!!)
 
         bund = arguments?.get("position") as Int
+
          // bund = requireArguments().get("position") as Int
         // Recyclerview
-        val adapter = DetailAdapter()
+        val adapter = DetailAdapter(this)
         val recyclerView = binding.recyclerview
         recyclerView.adapter=adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-
+        //var compteur = arguments?.get("compteur") as Int
 
 
 
@@ -79,14 +86,6 @@ class DetailFragment : Fragment() {
             adapter.updateDetail(it)
         })
 
-        //detailListViewModel.getDetailList(bund)
-//        detailListViewModel.readAllDetail.observe(viewLifecycleOwner, Observer {
-//            detailList -> adapter.updateDetail(detailList)
-//        })
-
-//        detailListDao.readDetailListById(bund).observe(viewLifecycleOwner, Observer {
-//            detailList -> adapter.updateDetail(detailList)
-//        })
 
 
         // ajout séparateur entre les listes recyclerview
@@ -108,6 +107,7 @@ class DetailFragment : Fragment() {
             val bundle = bundleOf("position" to bund)
             findNavController().navigate(R.id.action_detailFragment_to_addDetailFragment, bundle)
 
+
         }
 
 
@@ -126,7 +126,18 @@ class DetailFragment : Fragment() {
 //    }
 
     override fun onResume() {
+
         super.onResume()
+        var bund = arguments?.get("position") as Int
         detailListViewModel.getDetailList(bund)
+
+        binding.detailTitle.text = arguments?.get("titre_liste") as String
+        binding.tagDetail.text = arguments?.get("tag_liste") as String
+        //binding.elmt2.text = arguments?.get("nbre_elemt").toString()
+    }
+
+    override fun onDeleteClickListener(detailList: DetailList) {
+        detailListViewModel.deleteDetailList(detailList)
+        Toast.makeText(requireContext(), "Suppression effectuée!", Toast.LENGTH_LONG).show()
     }
 }

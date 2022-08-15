@@ -61,5 +61,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/update_detail"
+        android:layout_width="28dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textCategorie"
+        app:srcCompat="@drawable/ic_edit" />
+
+    <ImageView
+        android:id="@+id/delete_detail"
+        android:layout_width="36dp"
+        android:layout_height="22dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toEndOf="@+id/update_detail"
+        app:srcCompat="@drawable/ic_delete" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

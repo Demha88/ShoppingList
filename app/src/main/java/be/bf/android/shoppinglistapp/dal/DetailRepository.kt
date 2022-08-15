@@ -24,6 +24,14 @@ class DetailRepository(private val detailListDao: DetailListDao) {
         return detailListDao.readDetailListById(id)
     }
 
+    suspend fun updateDetailList(detailList: DetailList){
+        detailListDao.updateDetailList(detailList)
+    }
+
+    suspend fun deleteDetailList(detailList: DetailList){
+        detailListDao.deleteDetailList(detailList)
+    }
+
 
 
 
