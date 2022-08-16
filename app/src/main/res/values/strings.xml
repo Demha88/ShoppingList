@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">ShoppingListApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="create">Create</string>
+    <string-array name="spinner_array">
+        <item>Nourriture</item>
+        <item>Nourriture Lait</item>
+        <item>Divers</item>
+        <item>Hygiène et Santé</item>
+        <item>Produit Ménagers</item>
+        <item>Mode</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search" />
+</resources>
